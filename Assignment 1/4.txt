@@ -1,0 +1,85 @@
+
+Q_1: case1
+
+import cv2
+
+def Q_a(img_in, thick, border_colour, font_colour):
+    contours = []
+    min_size = 100
+    max_size = 10000
+
+    got_contours, hierarchy = cv2.findContours(image = img_in, mode = cv2.RETR_LIST, method = cv2.CHAIN_APPROX_SIMPLE)
+
+    imgTmp = cv2.cvtColor(img_in, cv2.COLOR_GRAY2RGB)
+
+    for cnt in got_contours:
+        area = cv2.contourArea(cnt)
+        if area > min_size and area < max_size:
+             #Put your code in here
+             contours.append(cnt)
+    
+    cv2.drawContours(image = imgTmp, contours = contours, contourIdx = -1, color = border_colour, thickness = thick)
+
+    cv2.fillPoly(imgTmp, pts =contours, color=font_colour)
+
+    return imgTmp
+
+# Load Image using OpenCV
+img_1570068228 = cv2.imread('C:/Users/user/sample/input.png', cv2.IMREAD_UNCHANGED)
+
+# Convert Image to GrayScale
+img_1570068228_gray = cv2.cvtColor(img_1570068228, cv2.COLOR_BGR2GRAY)
+
+thickness = 3
+border_colour = (255,0,0)
+font_colour = (0,0,255)
+
+imgTmp = Q_a(img_1570068228_gray, thickness, border_colour, font_colour)
+
+cv2.imshow('image', imgTmp)
+cv2.waitKey()
+
+
+
+Q_1: case2
+
+import cv2
+
+# def Q_b(img_in, shadow_size, shadow_magnitude, orientation):
+
+def Q_a(img_in, thick, border_colour, font_colour):
+    contours = []
+    min_size = 100
+    max_size = 10000
+
+    got_contours, hierarchy = cv2.findContours(image = img_in, mode = cv2.RETR_LIST, method = cv2.CHAIN_APPROX_SIMPLE)
+
+    imgTmp = cv2.cvtColor(img_in, cv2.COLOR_GRAY2RGB)
+
+    for cnt in got_contours:
+        area = cv2.contourArea(cnt)
+        if area > min_size and area < max_size:
+             #Put your code in here
+             contours.append(cnt)
+    
+    cv2.drawContours(image = imgTmp, contours = contours, contourIdx = -1, color = border_colour, thickness = thick)
+
+    cv2.fillPoly(imgTmp, pts =contours, color=font_colour)
+
+    return imgTmp
+
+# Load Image using OpenCV
+img_1570068228 = cv2.imread('C:/Users/user/sample/input.png', cv2.IMREAD_UNCHANGED)
+
+# Convert Image to GrayScale
+img_1570068228_gray = cv2.cvtColor(img_1570068228, cv2.COLOR_BGR2GRAY)
+
+thickness = 15
+border_colour = (0,255,0)
+font_colour = (0,0,0)
+
+imgTmp = Q_a(img_1570068228_gray, thickness, border_colour, font_colour)
+
+cv2.imshow('image', imgTmp)
+cv2.waitKey()
+
